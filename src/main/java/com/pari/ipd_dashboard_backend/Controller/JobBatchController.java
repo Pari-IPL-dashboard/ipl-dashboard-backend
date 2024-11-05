@@ -14,12 +14,8 @@ public class JobBatchController {
     JobRunner jobRunner;
     
     @PostMapping("/job/trigger")
-    public ResponseEntity<String> triggerBatchJob() {
-        try {
-            jobRunner.run("triggerJob");
-        } catch (Exception e){
-            return  new ResponseEntity<>("Job failed", HttpStatusCode.valueOf(500));
-        }
-        return  new ResponseEntity<>("Job completed successfully", HttpStatusCode.valueOf(200));
+    public ResponseEntity<String> triggerBatchJob() throws Exception {
+        jobRunner.run("triggerJob");
+        return  new ResponseEntity<>("Job triggered successfully", HttpStatusCode.valueOf(204));
     }
 }
